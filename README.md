@@ -1,9 +1,3 @@
----
-
-📄 FULL README.md UNTUK REPOSITORI PUBLIK
-
-Salin seluruh kode di bawah ini ke dalam file README.md di folder ~/ZOMBIE_PUBLIC:
-
 ```markdown
 # 🧟‍♂️ Zombie VDP – Hive Mind Edition
 
