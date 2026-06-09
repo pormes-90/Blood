@@ -1,11 +1,12 @@
 """
 🩸 BLOOD GHOST ZOMBIE — FINAL ULTIMATE FUSION EDITION v1.0
 "Untuk orang yang kusayangi — selamanya dalam kode ini."
-
+```
 ================================================================================
                                README.md
 ================================================================================
-
+```
+```
 ⚠️ DISCLAIMER
 --------------
 Tool ini dibuat untuk tujuan EDUKASI dan RISET KEAMANAN saja.
@@ -15,15 +16,66 @@ konsekuensi hukum, atau kehilangan data, pelajari dengan bijak sebelum menggunak
 
 Gunakan HANYA pada sistem yang Anda miliki sendiri atau telah mendapat izin tertulis.
 Sricpt ini di bawah lisensi zombie-vdp
+```
+```
+⚠️ DISCLAIMER
+--------------
+Tool ini dibuat untuk tujuan EDUKASI dan RISET KEAMANAN saja.
+Penggunaan yang tidak bertanggung jawab sepenuhnya menjadi tanggung jawab pengguna.
+Developer tidak bertanggung jawab atas penyalahgunaan, kerusakan sistem,
+konsekuensi hukum, atau kehilangan data, pelajari dengan bijak sebelum menggunakan.
 
+Gunakan HANYA pada sistem yang Anda miliki sendiri atau telah mendapat izin tertulis.
+Sricpt ini di bawah lisensi zombie-vdp
+```
+```
+📁 STRUCTURE:
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  SECTION 1  : IMPORTS & AUTO INSTALLER                                  ║
+    ║  SECTION 2  : COLORAMA & LOGGING                                        ║
+    ║  SECTION 3  : OS & DEVICE FINGERPRINTS                                  ║
+    ║  SECTION 4  : LEGAL SCOPE GUARD                                   `     ║
+    ║  SECTION 5  : CONFIGURATION                                             ║
+    ║  SECTION 6  : IDENTITY SYSTEM                                           ║
+    ║  SECTION 7  : DATABASE ENGINE                                           ║
+    ║  SECTION 8  : DNA CLONER v2.0                                           ║
+    ║  SECTION 9  : GHOST FLOOD v2.0                                          ║
+    ║  SECTION 10 : WAF DETECTION                                             ║
+    ║  SECTION 11 : SESSION MANAGER                                           ║
+    ║  ⭐ SECTION 12 : PAYLOAD LIBRARY (ADD PATTERNS HERE)                    ║
+    ║  SECTION 13 : RECON ENGINE                                              ║
+    ║  SECTION 14 : DORKING ENGINE                                            ║
+    ║  SECTION 15 : CRAWLER ENGINE                                            ║
+    ║  SECTION 16 : VULNERABILITY SCANNERS                                    ║
+    ║  SECTION 17 : SENSITIVE FILES SCANNER                                   ║
+    ║  SECTION 18 : FUZZER ENGINE                                             ║
+    ║  SECTION 19 : DEEP SCANNER                                              ║
+    ║  SECTION 20 : FILTER PIPELINE                                           ║
+    ║  SECTION 21 : MAIN ORCHESTRATOR                                         ║
+    ║  SECTION 22 : ENTRY POINT                                               ║
+    ╚══════════════════════════════════════════════════════════════╝
+```
+```
+USAGE:
+cd ~/Blood
+python3 -m venv bloodghostblue_env
+source bloodghostblue_env/bin/activate
+
+# No-Root Mode — Semua fitur jalan, Ghost auto-disabled
+python3 blood.py nasa.gov --fp-mode normal --rate 5.0 --deep --threads 2
+```
+
+```
 🧬 OVERVIEW
 --------------
 Blood Ghost Zombie Fusion adalah framework bug bounty dan vulnerability
 assessment otomatis dengan fitur lengkap untuk reconnaissance, scanning,
 fuzzing, hingga pelaporan.
-
+```
+```
 Target scope: domain bug bounty resmi (Google, NASA, HackerOne, Bugcrowd, dll).
-
+```
+```
 🚀 FITUR UTAMA
 --------------
 | Modul                   | Deskripsi                                      |
@@ -40,39 +92,47 @@ Target scope: domain bug bounty resmi (Google, NASA, HackerOne, Bugcrowd, dll).
 | Ghost Flood             | Phantom device generator                       |
 | Filter Pipeline Pro     | 5-stage false positive filter                  |
 | Report Generator        | Output JSON, CSV, Markdown                     |
-
+```
+```
 📋 PERSYARATAN SISTEM
 --------------
 - Python 3.8+
 - OS: Linux, macOS, Windows (WSL direkomendasikan)
 - Koneksi internet stabil
-
+```
+```
 Dependencies (auto-install):
 - aiohttp, colorama, beautifulsoup4, lxml, tldextract, requests
-
+```
+```
 🔧 INSTALASI
 --------------
   git clone https://github.com/pormes-90/Blood.git
   cd Blood
   pip install -r requirements.txt  # opsional, script auto-install
   python3 zombie.py <target>
-
+```
+```
 🎮 PENGGUNAAN
 --------------
   # Basic
-  python3 zombie.py nasa.gov
+  python3 blood.py nasa.gov
 
   # Stealth Mode
-  python3 zombie.py google.com --stealth --rate 3.5
+  python3 blood.py google.com --stealth --rate 3.5
 
   # Deep Scan
-  python3 zombie.py hackerone.com --deep --threads 8
+  python3 blood.py hackerone.com --deep --threads 8
 
   # Custom Output
-  python3 zombie.py bugcrowd.com --output ./reports
+  python3 blood.py bugcrowd.com --output ./reports
 
   # Disable Modules
-  python3 zombie.py example.com --no-dna --no-ghost --no-dork
+  python3 blood.py example.com --no-dna --no-ghost --no-dork
+
+  #Full Save
+  python3 blood.py nasa.gov --fp-mode normal --rate 5.0 --deep --threads 2
+```
 
 OPTIONS:
   --stealth       Stealth mode (workers=2, rate=3.5)
@@ -84,7 +144,8 @@ OPTIONS:
   --no-ghost      Nonaktifkan Ghost Flood
   --no-dork       Nonaktifkan Dorking Engine
   --no-crawl      Nonaktifkan Crawler Engine
-
+```
+```
 🏗️ ARSITEKTUR
 --------------
 BloodFusion (Orchestrator)
@@ -136,16 +197,12 @@ BloodFusion (Orchestrator)
 │   ├── Stage 4: Quality Scoring (50-100)
 │   └── Stage 5: Deduplication
 └── 📊 Report Generator (JSON, CSV, MD)
-
+```
+```
 🔐 KEAMANAN
---------------
-- Password Zombie Auth: bloodghost (3x percobaan)
-- Patent Key: SHA256("zombie") integrity check
-- Domain whitelist: google, youtube, nasa, github, hackerone, bugcrowd
-- Military/Gov scope: .gov, .mil, .nasa.gov
 - Anonymous identity + random User-Agent
-- API key redaction di logging
-
+```
+```
 🧬 DNA CLONER — OS FINGERPRINTS (14 signatures)
 --------------
 | OS                | Ports                          | TTL |
@@ -164,7 +221,8 @@ BloodFusion (Orchestrator)
 | VMware ESXi       | 22,80,443,902                  | 64  |
 | Docker Host       | 22,2375,2376,80                | 64  |
 | Kubernetes Node   | 22,6443,10250,10255            | 64  |
-
+```
+```
 👻 GHOST FLOOD — DEVICE PROFILES
 --------------
 | Profile      | OS Examples                    | Distribution |
@@ -176,7 +234,8 @@ BloodFusion (Orchestrator)
 | Network      | Cisco IOS, OpenWRT, pfSense    | 10%          |
 | Printer      | Embedded Linux, Custom RTOS    | 8%           |
 | VM           | VMware ESXi, Proxmox, Hyper-V  | 7%           |
-
+```
+```
 🔎 DORKING ENGINE — SEARCH ENGINES
 --------------
 | Engine     | Method | Priority | Cooldown   |
@@ -186,7 +245,8 @@ BloodFusion (Orchestrator)
 | Yandex     | GET    | 3        | 2.0-3.0s   |
 | DuckDuckGo | POST   | 4        | 2.0-3.5s   |
 | Brave      | GET    | 5        | 2.5-4.0s   |
-
+```
+```
 🛡️ FILTER PIPELINE — 5 STAGES
 --------------
 | Stage | Filter              | Description                           |
@@ -196,7 +256,8 @@ BloodFusion (Orchestrator)
 | 3     | Known FP Detection   | Pattern-based false positive removal  |
 | 4     | Quality Scoring      | Score 0-100 (6 factors)               |
 | 5     | Deduplication        | Hash + URL/type dedup                 |
-
+```
+```
 📊 OUTPUT FORMAT
 --------------
 fusion_results/
@@ -204,7 +265,8 @@ fusion_results/
     ├── report.json      # Full JSON report
     ├── findings.csv     # CSV table
     └── README.md        # Human-readable report
-
+```
+```
 🔄 ALUR KERJA (8 PHASES)
 --------------
 PHASE 1   🔍 RECONNAISSANCE    → Subdomain + URL discovery
@@ -216,25 +278,30 @@ PHASE 5   📁 SENSITIVE FILES   → Endpoint scanning
 PHASE 6   💉 VULNERABILITY SCAN → 11 scan types + fuzzing
 PHASE 7   🛡️ FP FILTER         → 5-stage pipeline
 PHASE 8   🔬 DEEP VERIFICATION → Secondary request check
-
+```
+```
 👤 IDENTITAS
 --------------
 - Hunter: Dikha Pormes
 - Email: 418teapotbot@gmail.com
 - Signal: BloodGhostZombie/Fusion-v3.0
 - Anonymous Mode: Random identity rotation
-
+```
+````
 📄 LISENSI
 --------------
 PROPRIETARY — ALL RIGHTS RESERVED
 Hanya untuk ethical use: riset keamanan, bug bounty, pendidikan.
-
+```
+```
 ⭐ CREDITS
 --------------
 Dibuat oleh Dikha Pormes & 418teapot
 "Untuk orang yang kusayangi — selamanya dalam kode ini."
-
+```
+```
 ================================================================================
                           END OF README.md
 ================================================================================
+```
 """
