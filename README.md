@@ -1,759 +1,246 @@
-🔴 MODE OPERASI LENGKAP
-
-```bash
-# ═══════════════════════════════════════════════════════════════
-# 1. MODE NO-ROOT (DEFAULT) — Buat Bug Bounty Normal
-# ═══════════════════════════════════════════════════════════════
-# Tidak butuh root, semua scanner web berfungsi penuh
-# Ghost modules auto-disabled
-
-python3 blood.py target.com
-python3 blood.py target.com --fp-mode aggressive
-python3 blood.py target.com --deep --threads 10
-python3 blood.py target.com --scope "*.target.com,api.target.com"
-
-
-# ═══════════════════════════════════════════════════════════════
-# 2. MODE ROOT — Full Power + Ghost Modules + Network Attacks
-# ═══════════════════════════════════════════════════════════════
-# Harus dijalankan dengan sudo
-# Semua module aktif termasuk: Quantum Noise, Ghost Flood, 
-# Dimensional Shift, Echo Locator, DNA Cloning, Mirror Mode
-
-sudo python3 blood.py target.com --root-mode
-sudo python3 blood.py target.com --root-mode --deep --ghost-all
-sudo python3 blood.py target.com --root-mode --ghost-quantum --ghost-flood
-sudo python3 blood.py target.com --root-mode --interface eth0 --target-network 192.168.1.0/24
-
-
-# ═══════════════════════════════════════════════════════════════
-# 3. MODE STEALTH — Ultra Slow Evasion (No-Root / Root)
-# ═══════════════════════════════════════════════════════════════
-# Rate sangat pelan, random delay, rotasi User-Agent
-# Cocok untuk target yang punya WAF ketat
-
-python3 blood.py target.com --stealth
-sudo python3 blood.py target.com --stealth --root-mode
-
-
-# ═══════════════════════════════════════════════════════════════
-# 4. MENGGUNAKAN CONFIG YAML
-# ═══════════════════════════════════════════════════════════════
-
-python3 blood.py --config config.yaml
-python3 blood.py --config config.yaml --target target.com
-python3 blood.py --config config.yaml --target target.com --root-mode
-```
-
----
-
-📄 CONFIG YAML — config.yaml
-
-```yaml
-# ═══════════════════════════════════════════════════════════════
-# BLOOD GHOST BLUE — CONFIGURATION FILE
-# ═══════════════════════════════════════════════════════════════
-# Letakkan di folder yang sama dengan blood.py
-# Gunakan: python3 blood.py --config config.yaml
-# Atau: python3 blood.py --config config.yaml --target target.com
-# ═══════════════════════════════════════════════════════════════
-
-# ─── Hunter Identity ──────────────────────────────────────
-hunter:
-  name: "418teapot"
-  email: "418teapotbot@gmail.com"
-  signal: "BloodGhostBlue/4.0"
-
-# ─── Target Configuration ─────────────────────────────────
-targets:
-  # - target1.com
-  # - target2.com
-  # Biarkan kosong jika menggunakan --target dari CLI
-
-# ─── Output Settings ──────────────────────────────────────
-output:
-  directory: "./bounty_results"
-  database: "bounty_hunter.db"
-  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
-
-# ─── Performance ──────────────────────────────────────────
-performance:
-  workers: 5           # Concurrent threads
-  rate_limit: 2.0      # Requests per second
-  timeout: 15          # Request timeout (seconds)
-  max_retries: 2       # Retry failed requests
-  max_urls: 1000       # Max URLs to scan per target
-  max_depth: 3         # Crawl depth
-
-# ─── Scope Control ────────────────────────────────────────
-scope:
-  include:
-    # - "*.target.com"
-    # - "api.target.com"
-    # - "target.com"
-  exclude:
-    # - "*.cdn.target.com"
-    # - "static.target.com"
-  strict: true  # Strict scope enforcement
-
-# ─── Reconnaissance Modules ───────────────────────────────
-recon:
-  crtsh: true                    # Certificate transparency
-  wayback: true                  # Wayback Machine
-  otx: true                      # AlienVault OTX
-  urlscan: true                  # URLScan.io
-  dns_brute: true                # DNS subdomain brute
-  dns_brute_wordlist_size: 5000  # Wordlist size
-  subdomain_permutation: true    # Generate permutations
-  zone_transfer: true            # Attempt zone transfer
-  whois: true                    # WHOIS lookup
-  shodan: false                  # Shodan (need API key)
-  censys: false                  # Censys (need API key)
-
-# ─── Scan Modules ────────────────────────────────────────
-scan:
-  xss: true                      # Cross-Site Scripting
-  sqli: true                     # SQL Injection
-  lfi: true                      # Local File Inclusion
-  ssti: true                     # Server-Side Template Injection
-  ssrf: true                     # Server-Side Request Forgery
-  idor: true                     # Insecure Direct Object Reference
-  cmdi: true                     # Command Injection
-  open_redirect: true            # Open Redirect
-  cors: true                     # CORS Misconfiguration
-  crlf: true                     # CRLF Injection
-  host_header: true              # Host Header Injection
-  jwt: true                      # JWT Attacks
-  graphql: true                  # GraphQL Attacks
-  sensitive_files: true          # Sensitive File Discovery
-  csrf: true                     # CSRF Detection
-  subdomain_takeover: true       # Subdomain Takeover
-  cve: true                      # CVE Detection
-
-# ─── Advanced Payload Settings ────────────────────────────
-payloads:
-  xss_count: 50                  # Number of XSS payloads
-  sqli_count: 30                 # Number of SQLi payloads
-  waf_bypass: true               # Use WAF bypass techniques
-  use_polyglots: true            # Use polyglot payloads
-  use_obfuscation: true          # Use obfuscated payloads
-  double_encode: true            # Double URL encoding
-
-# ─── Ghost Modules (Requires ROOT) ───────────────────────
-ghost:
-  quantum_noise: false           # Generate noise traffic
-  dimensional_shift: false       # MAC address spoofing
-  dna_cloning: true              # Target fingerprinting
-  ghost_flood: false             # ARP phantom flood
-  mirror_mode: true              # Network host discovery
-  echo_locator: false            # Passive network listening
-  interface: "eth0"              # Network interface
-  target_network: ""             # Target network for scanning
-
-# ─── Anti False Positive ──────────────────────────────────
-false_positive:
-  enabled: true                  # Enable FP filter
-  aggression: 2                  # 1=lenient, 2=normal, 3=aggressive
-  verify_count: 2                # Verification attempts
-  similarity_threshold: 0.85     # Response similarity threshold
-
-# ─── Stealth Mode ────────────────────────────────────────
-stealth:
-  enabled: false                 # Stealth mode
-  random_delay: true             # Random delays between requests
-  random_user_agent: true        # Rotate User-Agent
-  spoof_referer: true            # Spoof Referer header
-  use_tor: false                 # Route through Tor
-
-# ─── Reporting ───────────────────────────────────────────
-reporting:
-  json: true                     # JSON report
-  csv: true                      # CSV report
-  html: true                     # HTML report
-  markdown: true                 # Markdown report
-  burp_xml: false                # Burp Suite XML
-  webhook: ""                    # Discord/Slack webhook URL
-
-# ─── API Keys ────────────────────────────────────────────
-api_keys:
-  otx: ""                        # AlienVault OTX
-  urlscan: ""                    # URLScan.io
-  shodan: ""                     # Shodan
-  censys_id: ""                  # Censys API ID
-  censys_secret: ""              # Censys API Secret
-  github: ""                     # GitHub Token
-
-# ─── Notifications ───────────────────────────────────────
-notifications:
-  discord_webhook: ""            # Discord webhook
-  slack_webhook: ""              # Slack webhook
-  telegram_bot_token: ""         # Telegram bot token
-  telegram_chat_id: ""           # Telegram chat ID
-  email_smtp: ""                 # SMTP server
-  email_port: 587                # SMTP port
-  email_user: ""                 # SMTP username
-  email_pass: ""                 # SMTP password
-  notify_on_critical: true       # Notify on critical findings
-  notify_on_high: true           # Notify on high findings
-```
-
----
-
-📖 README.py — README dalam bentuk Python (Mudah Dicopy)
-
-```
-AUTHOR: 418teapot
-VERSION: 4.0 DARK EDITION
-LICENSE: For authorized security testing only
-STATUS: Production Ready — All Features 100% Functional
-
-═══════════════════════════════════════════════════════════════════════════════════════
-                            📋 QUICK START GUIDE
-═══════════════════════════════════════════════════════════════════════════════════════
-
-## 🚀 INSTALLATION
-
-```bash
-# Clone atau download script
-git clone https://github.com/418teapot/blood-ghost-blue.git
-cd blood-ghost-blue
-
-# Install dependencies (auto-install saat pertama run)
-python3 blood.py --setup
-
-# Atau manual install
-pip install -r requirements.txt
-```
-
-📖 USAGE
-
-Mode 1: NO-ROOT (Bug Bounty Normal)
-
-```bash
-# Scan dasar
-python3 blood.py target.com
-
-# Scan agresif dengan FP filtering ketat
-python3 blood.py target.com --fp-mode aggressive
-
-# Deep scan dengan 10 workers
-python3 blood.py target.com --deep --threads 10
-
-# Custom scope
-python3 blood.py target.com --scope "*.target.com,api.target.com"
-
-# Multiple targets
-python3 blood.py "target1.com,target2.com,target3.com"
-
-# Dengan config file
-python3 blood.py --config config.yaml
-```
-
-Mode 2: ROOT (Full Power + Ghost Modules)
-
-```bash
-# Root mode dasar
-sudo python3 blood.py target.com --root-mode
-
-# Root mode dengan semua ghost modules
-sudo python3 blood.py target.com --root-mode --ghost-all
-
-# Root mode dengan quantum noise
-sudo python3 blood.py target.com --root-mode --ghost-quantum
-
-# Root mode dengan internal network scan
-sudo python3 blood.py target.com --root-mode --target-network 192.168.1.0/24
-
-# Root mode custom interface
-sudo python3 blood.py target.com --root-mode --interface wlan0
-```
-
-Mode 3: STEALTH (Ultra Slow Evasion)
-
-```bash
-# Stealth mode no-root
-python3 blood.py target.com --stealth
-
-# Stealth mode dengan root
-sudo python3 blood.py target.com --stealth --root-mode
-
-# Stealth dengan rate custom
-python3 blood.py target.com --stealth --rate 5.0
-```
-
-⚙️ COMMAND LINE OPTIONS
-```
-Option Description Example
---config <file> Gunakan config YAML --config config.yaml
---target <domain> Override target di config --target target.com
---root-mode Aktifkan mode root (butuh sudo) --root-mode
---stealth Mode ultra-slow evasion --stealth
---deep Full recon + semua modules --deep
---scope <domains> Batasi scope scan --scope "*.target.com"
---out <domains> Exclude dari scope --out "*.cdn.target.com"
---fp-mode <mode> FP filter: lenient/normal/aggressive --fp-mode aggressive
---threads <N> Jumlah concurrent workers --threads 10
---rate <N> Requests per second --rate 3.0
---payloads <N> Jumlah payload per type --payloads 50
---output <dir> Output directory --output ./results
---ghost-all Aktifkan semua ghost modules --ghost-all
---ghost-quantum Aktifkan quantum noise --ghost-quantum
---ghost-flood Aktifkan ghost flood --ghost-flood
---ghost-mirror Aktifkan mirror mode --ghost-mirror
---ghost-dna Aktifkan DNA cloning --ghost-dna
---ghost-shift Aktifkan dimensional shift --ghost-shift
---ghost-echo Aktifkan echo locator --ghost-echo
---interface <iface> Network interface --interface eth0
---target-network <net> Target network (CIDR) --target-network 192.168.1.0/24
---setup Install dependencies --setup
---version Tampilkan versi --version
---help Tampilkan bantuan --help
-```
-
-📁 OUTPUT FILES
-
-Setelah scan selesai, file berikut akan dibuat di folder output:
-
-```
-bounty_results/
-├── bounty_report_20240605_143022.json     # JSON report (lengkap)
-├── bounty_report_20240605_143022.csv      # CSV report (Excel-ready)
-├── bounty_report_20240605_143022.md       # Markdown report
-├── bounty_report_20240605_143022.html     # HTML report
-├── evidence/                               # Evidence screenshots
-├── logs/                                   # Scan logs
-├── vdp_scan_20240605_143022.log           # Detailed scan log
-└── bounty_hunter.db                        # SQLite database
-```
-
-🎯 CAPABILITIES
-
-```
-Reconnaissance
-
-· ✅ CRT.sh Certificate Transparency (semua subdomain)
-· ✅ Wayback Machine (semua URL historis)
-· ✅ AlienVault OTX Passive DNS
-· ✅ URLScan.io Search
-· ✅ DNS Brute-force (5000+ wordlist)
-· ✅ Subdomain Permutation Generator
-· ✅ DNS Zone Transfer Attempt
-· ✅ WHOIS Lookup
-· ✅ Shodan/Censys Integration (dengan API key)
-
-Vulnerability Scanning
-
-· ✅ XSS (100+ payloads, polyglots, WAF bypass, DOM-aware)
-· ✅ SQLi (Error-based, Blind, Time-based, Union, Stacked, OOB)
-· ✅ LFI/RFI (Path Traversal, PHP Wrappers, Log Injection)
-· ✅ SSTI (Jinja2, Twig, Freemarker, Velocity, ERB, Smarty, Mako)
-· ✅ SSRF (Cloud Metadata AWS/GCP/Azure, Internal Ports)
-· ✅ IDOR (Pattern Recognition, Sequential Forcing)
-· ✅ Command Injection (40+ payloads, filter bypass)
-· ✅ CORS Misconfiguration
-· ✅ Open Redirect
-· ✅ CRLF Injection
-· ✅ Host Header Injection
-· ✅ JWT Attacks (None Algorithm, Key Confusion)
-· ✅ GraphQL Attacks (Introspection, Batching)
-· ✅ Sensitive File Discovery (200+ paths)
-· ✅ CSRF Detection
-· ✅ Subdomain Takeover
-· ✅ CVE Detection
-
-Ghost Modules (Root Required)
-
-· ✅ Quantum Noise (Traffic generation)
-· ✅ Dimensional Shift (MAC spoofing)
-· ✅ DNA Cloning (Target fingerprinting)
-· ✅ Ghost Flood (ARP phantom flood)
-· ✅ Mirror Mode (Network host discovery)
-· ✅ Echo Locator (Passive network sniffing)
-
-Advanced Features
-
-· ✅ 50+ WAF Signatures Detection
-· ✅ 5-Stage False Positive Elimination
-· ✅ Adaptive Per-Domain Rate Limiting
-· ✅ Response Caching & Retry Logic
-· ✅ Stealth Mode (evasion)
-· ✅ Multi-Format Reporting (JSON, CSV, MD, HTML)
-· ✅ SQLite Database (all findings)
-· ✅ YAML Configuration Support
-· ✅ Discord/Slack/Telegram Notifications
-
-```
-🔧 CONFIGURATION
-
-Config File (config.yaml)
-
-```bash
-# Generate default config
-python3 blood.py --generate-config
-
-# Edit config.yaml sesuai kebutuhan
-nano config.yaml
-
-# Jalankan dengan config
-python3 blood.py --config config.yaml
-```
-
-Environment Variables
-
-```bash
-export BOUNTY_HUNTER="YourName"
-export BOUNTY_EMAIL="your@email.com"
-export OTX_API_KEY="your-otx-key"
-export SHODAN_API_KEY="your-shodan-key"
-export DISCORD_WEBHOOK="your-webhook-url"
-```
-
-⚠️ DISCLAIMER
-
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ⚠️  WARNING — FOR AUTHORIZED TESTING ONLY                              ║
-║                                                                         ║
-║  This tool is designed for:                                             ║
-║  • Bug Bounty Programs (with authorization)                             ║
-║  • Penetration Testing (with written consent)                           ║
-║  • Security Research (on own systems)                                   ║
-║  • CTF Competitions                                                     ║
-║                                                                         ║
-║  DO NOT USE ON SYSTEMS WITHOUT EXPLICIT PERMISSION                      ║
-║  The author is not responsible for misuse of this tool.                 ║
-╚══════════════════════════════════════════════════════════════╝
-```
-
-📊 EXAMPLE OUTPUT
-
-```
-🩸 BLOOD GHOST BLUE — DARK EDITION v4.0
-Bug Bounty Hunter • Real Exploitation Engine
-Author: 418teapot
-Session: a1b2c3d4
-Targets: target.com
-Workers: 5 | Rate: 2.0/s
-FP Filter: ENABLED
-Mode: NORMAL
-
-══════════════════════════════════════════════════════════════
-  🎯 TARGET: target.com
-══════════════════════════════════════════════════════════════
-
-[ PHASE 1: RECONNAISSANCE ]
-  [CRT.sh] Searching certificate logs...
-    → 47 subdomains
-  [Wayback] Searching archives...
-    → 1234 URLs
-  [DNS Brute] Brute-forcing subdomains...
-    → 23 subdomains
-  [Permutation] Generating permutations...
-    → 156 new permutations
-  [Zone Transfer] Attempting zone transfer...
-    → Failed (expected for most domains)
-  [WHOIS] Looking up domain info...
-    → Registrar: GoDaddy.com, LLC
-  Total: 226 subdomains, 2478 URLs
-
-[ PHASE 2: SENSITIVE FILE SCAN ]
-  [!] https://dev.target.com/.env
-  [!] https://staging.target.com/.git/config
-  [!] https://api.target.com/phpinfo.php
-  Sensitive files found: 8
-
-[ PHASE 3: VULNERABILITY SCANNING ]
-  [CRITICAL] SQL Injection — https://target.com/product?id=1
-  [CRITICAL] SSRF — https://api.target.com/webhook?url=
-  [HIGH] XSS — https://target.com/search?q=test
-  [HIGH] IDOR — https://api.target.com/users/123 → 124
-  [HIGH] SSTI (Jinja2) — https://target.com/profile?name=
-  [MEDIUM] CORS — https://api.target.com/
-  [MEDIUM] Open Redirect — https://target.com/logout?next=
-
-[ HUNT SUMMARY ]
-  Duration: 847.3s
-  Total Findings: 23
-  Critical: 2
-  High: 7
-  Medium: 9
-  Low: 5
-  Verified: 18
-  False Positives Eliminated: 47
-
-  Top Findings:
-  [CRITICAL] SQL Injection — https://target.com/product?id=1
-  [CRITICAL] SSRF — https://api.target.com/webhook?url=
-  [HIGH] XSS — https://target.com/search?q=test
-  ...
-
-Reports Generated:
-  📄 JSON: bounty_report_20240605_143022.json
-  📊 CSV:  bounty_report_20240605_143022.csv
-  📝 MD:   bounty_report_20240605_143022.md
-
-══════════════════════════════════════════════════════════════
-[ HUNT COMPLETE ]
-══════════════════════════════════════════════════════════════
-```
-
-🤝 CONTRIBUTING
-
-Pull requests welcome! Fokus area:
-
-· Payload libraries (XSS, SQLi, SSTI, etc.)
-· WAF signatures
-· Recon sources
-· FP detection patterns
-· CVE detection modules
-
-📝 LICENSE
-
-MIT License — See LICENSE file for details.
-
-═══════════════════════════════════════════════════════════════════════════════════════
-🩸 HAPPY HUNTING — STAY LEGAL 🩸
-═══════════════════════════════════════════════════════════════════════════════════════
 """
-
-def show_readme():
-"""Display README."""
-print(doc)
-
-def show_quickstart():
-"""Display quick start guide."""
-print("""
-╔══════════════════════════════════════════════════════════════╗
-║                    🩸 QUICK START GUIDE                                 ║
-╚══════════════════════════════════════════════════════════════╝
+🩸 BLOOD GHOST ZOMBIE — FINAL ULTIMATE FUSION EDITION v1.0
+"Untuk orang yang kusayangi — selamanya dalam kode ini."
 ```
-1️⃣  NO-ROOT MODE (Bug Bounty Normal):
-python3 blood.py target.com
-python3 blood.py target.com --fp-mode aggressive
-python3 blood.py target.com --deep --threads 10
+================================================================================
+                               README.md
+================================================================================
+```
+```
+⚠️ DISCLAIMER
+--------------
+Tool ini dibuat untuk tujuan EDUKASI dan RISET KEAMANAN saja.
+Penggunaan yang tidak bertanggung jawab sepenuhnya menjadi tanggung jawab pengguna.
+Developer tidak bertanggung jawab atas penyalahgunaan, kerusakan sistem,
+konsekuensi hukum, atau kehilangan data, pelajari dengan bijak sebelum menggunakan.
 
-2️⃣  ROOT MODE (Full Power + Ghost):
-sudo python3 blood.py target.com --root-mode
-sudo python3 blood.py target.com --root-mode --ghost-all
+Gunakan HANYA pada sistem yang Anda miliki sendiri atau telah mendapat izin tertulis.
+Sricpt ini di bawah lisensi zombie-vdp
+Code mengutamakan aturan 100% Legalitas, Sesuai aturan VDP.
+IKUTI ATURAN, DILANGGAR KERAS MELANGGAR KEDISIPLINAN !!!
 
-3️⃣  STEALTH MODE (Evasion):
-python3 blood.py target.com --stealth
-sudo python3 blood.py target.com --stealth --root-mode
+🧬 OVERVIEW
+--------------
+Blood Ghost Zombie Fusion adalah framework bug bounty dan vulnerability
+assessment otomatis dengan fitur lengkap untuk reconnaissance, scanning,
+fuzzing, hingga pelaporan.
 
-4️⃣  CONFIG MODE (YAML):
-python3 blood.py --config config.yaml
+Target scope: domain bug bounty resmi (Google, NASA, HackerOne, Bugcrowd, dll).
 
-5️⃣  GENERATE CONFIG:
-python3 blood.py --generate-config
+🚀 FITUR UTAMA
+--------------
+| Modul                   | Deskripsi                                      |
+|-------------------------|------------------------------------------------|
+| Recon Engine            | crt.sh, Wayback, OTX, URLScan, DNS Brute       |
+| Dorking Engine          | Bing, Yahoo, Yandex, DuckDuckGo, Brave         |
+| Crawler Engine          | Crawling halaman + ekstrak URL internal        |
+| Vulnerability Scanner   | XSS, SQLi, LFI, SSTI, SSRF, CMDI, Redirect,    |
+|                         | CORS, Host Header, CRLF, IDOR                  |
+| Fuzzer Engine           | Baseline-based fuzzing + anomaly detection     |
+| Sensitive Files         | Deteksi file/endpoint sensitif                 |
+| Deep Scanner            | Verifikasi findings dengan request kedua       |
+| DNA Cloner v2.0         | Network device fingerprinting & cloning        |
+| Ghost Flood             | Phantom device generator                       |
+| Filter Pipeline Pro     | 5-stage false positive filter                  |
+| Report Generator        | Output JSON, CSV, Markdown                     |
 
-6️⃣  INSTALL DEPENDENCIES:
-python3 blood.py --setup
+📋 PERSYARATAN SISTEM
+--------------
+- Python 3.8+
+- OS: Linux, macOS, Windows (WSL direkomendasikan)
+- Koneksi internet stabil
 
-7️⃣  SHOW VERSION:
-python3 blood.py --version
+Dependencies (auto-install):
+- aiohttp, colorama, beautifulsoup4, lxml, tldextract, requests
 
-8️⃣  SHOW HELP:
-python3 blood.py --help
-python3 blood.py --readme
-""")
+🔧 INSTALASI
+--------------
+  git clone https://github.com/pormes-90/Blood.git
+  cd Blood
+  pip install -r requirements.txt  # opsional, script auto-install
+  python3 zombie.py <target>
+
+🎮 PENGGUNAAN
+--------------
+  # Basic
+  python3 zombie.py nasa.gov
+
+  # Stealth Mode
+  python3 zombie.py google.com --stealth --rate 3.5
+
+  # Deep Scan
+  python3 zombie.py hackerone.com --deep --threads 8
+
+  # Custom Output
+  python3 zombie.py bugcrowd.com --output ./reports
+
+  # Disable Modules
+  python3 zombie.py example.com --no-dna --no-ghost --no-dork
+
+OPTIONS:
+  --stealth       Stealth mode (workers=2, rate=3.5)
+  --deep          Deep scan mode (2x payloads, 2x workers)
+  --rate <N>      Rate limit dalam detik (default: 2.0)
+  --threads <N>   Jumlah workers (default: 5)
+  --output <dir>  Output directory (default: ./fusion_results)
+  --no-dna        Nonaktifkan DNA Cloner
+  --no-ghost      Nonaktifkan Ghost Flood
+  --no-dork       Nonaktifkan Dorking Engine
+  --no-crawl      Nonaktifkan Crawler Engine
+
+🏗️ ARSITEKTUR
+--------------
+BloodFusion (Orchestrator)
+├── 🔐 Zombie Auth (password: bloodghost)
+├── 🧬 DNA Cloner v2.0
+│   ├── OUI MAC Generation (20 vendors)
+│   ├── OS Fingerprinting (14 signatures)
+│   ├── Port Probing (12 ports)
+│   └── ARP Spoof Detection
+├── 👻 Ghost Flood
+│   ├── 7 Device Profiles
+│   └── Phantom Generator
+├── 🔍 Recon Engine
+│   ├── crt.sh (Certificate Transparency)
+│   ├── Wayback Machine (Internet Archive)
+│   ├── AlienVault OTX (Passive DNS)
+│   ├── URLScan.io
+│   └── DNS Brute Force (50+ wordlist)
+├── 🔎 Dorking Engine
+│   ├── 5 Search Engines
+│   ├── Smart Fallback
+│   └── Early Stop (stall detection)
+├── 🕷️ Crawler Engine
+│   ├── Internal Link Extraction
+│   └── Scope Filter
+├── 💉 Vulnerability Scanners (11 types)
+│   ├── XSS (Reflected)
+│   ├── SQLi (Error + Time-based)
+│   ├── LFI / Path Traversal
+│   ├── SSTI (Jinja2, Freemarker, ERB, Pug)
+│   ├── SSRF (Cloud Metadata)
+│   ├── Command Injection
+│   ├── Open Redirect
+│   ├── CORS Misconfiguration
+│   ├── Host Header Injection
+│   ├── CRLF Injection
+│   └── IDOR
+├── 🧪 Fuzzer Engine
+│   ├── Baseline Comparison
+│   ├── Length Deviation
+│   ├── Status Code Deviation
+│   └── Error Keyword Detection
+├── 📁 Sensitive Files Scanner
+├── 🔬 Deep Scanner
+├── 🛡️ Filter Pipeline Pro (5 Stages)
+│   ├── Stage 1: Confidence ≥60%
+│   ├── Stage 2: Immune Parameters (90+)
+│   ├── Stage 3: Known FP Detection
+│   ├── Stage 4: Quality Scoring (50-100)
+│   └── Stage 5: Deduplication
+└── 📊 Report Generator (JSON, CSV, MD)
+
+🔐 KEAMANAN
+--------------
+- Password Zombie Auth: bloodghost (3x percobaan)
+- Patent Key: SHA256("zombie") integrity check
+- Domain whitelist: google, youtube, nasa, github, hackerone, bugcrowd
+- Military/Gov scope: .gov, .mil, .nasa.gov
+- Anonymous identity + random User-Agent
+- API key redaction di logging
+
+🧬 DNA CLONER — OS FINGERPRINTS (14 signatures)
+--------------
+| OS                | Ports                          | TTL |
+|-------------------|--------------------------------|-----|
+| Windows 11        | 445,139,135,3389,5985,5986     | 128 |
+| Windows 10        | 445,139,135,3389               | 128 |
+| Windows Server    | 445,139,135,3389,1433,3306     | 128 |
+| Ubuntu Desktop    | 22,111,631,5353                | 64  |
+| Ubuntu Server     | 22,80,443,3306,5432            | 64  |
+| macOS             | 22,548,5353,5900               | 64  |
+| iOS               | 62078                          | 64  |
+| Android           | 5555,8080                      | 64  |
+| Cisco Router      | 22,23,80,443,161               | 255 |
+| Printer           | 515,631,9100,161               | 64  |
+| IoT Device        | 80,8080,23,554                 | 64  |
+| VMware ESXi       | 22,80,443,902                  | 64  |
+| Docker Host       | 22,2375,2376,80                | 64  |
+| Kubernetes Node   | 22,6443,10250,10255            | 64  |
+
+👻 GHOST FLOOD — DEVICE PROFILES
+--------------
+| Profile      | OS Examples                    | Distribution |
+|--------------|--------------------------------|--------------|
+| Workstation  | Windows 11/10, Ubuntu, macOS   | 30%          |
+| Mobile       | Android 14, iOS 18, iPadOS     | 20%          |
+| IoT          | Embedded Linux, Raspbian       | 15%          |
+| Server       | Windows Server, Ubuntu Server  | 10%          |
+| Network      | Cisco IOS, OpenWRT, pfSense    | 10%          |
+| Printer      | Embedded Linux, Custom RTOS    | 8%           |
+| VM           | VMware ESXi, Proxmox, Hyper-V  | 7%           |
+
+🔎 DORKING ENGINE — SEARCH ENGINES
+--------------
+| Engine     | Method | Priority | Cooldown   |
+|------------|--------|----------|------------|
+| Bing       | GET    | 1        | 1.5-2.5s   |
+| Yahoo      | GET    | 2        | 1.5-2.5s   |
+| Yandex     | GET    | 3        | 2.0-3.0s   |
+| DuckDuckGo | POST   | 4        | 2.0-3.5s   |
+| Brave      | GET    | 5        | 2.5-4.0s   |
+
+🛡️ FILTER PIPELINE — 5 STAGES
+--------------
+| Stage | Filter              | Description                           |
+|-------|---------------------|---------------------------------------|
+| 1     | Confidence Threshold | Remove <60% confidence                |
+| 2     | Immune Parameters    | Remove safe params (90+ params)       |
+| 3     | Known FP Detection   | Pattern-based false positive removal  |
+| 4     | Quality Scoring      | Score 0-100 (6 factors)               |
+| 5     | Deduplication        | Hash + URL/type dedup                 |
+
+📊 OUTPUT FORMAT
+--------------
+fusion_results/
+└── report_<target>_<timestamp>/
+    ├── report.json      # Full JSON report
+    ├── findings.csv     # CSV table
+    └── README.md        # Human-readable report
+
+🔄 ALUR KERJA (8 PHASES)
+--------------
+PHASE 1   🔍 RECONNAISSANCE    → Subdomain + URL discovery
+PHASE 2   🧬 DNA CLONING       → Network device fingerprinting
+PHASE 2.5 👻 GHOST FLOOD       → Phantom device generation
+PHASE 3   🔎 DORKING           → Multi-engine search
+PHASE 4   🕷️ CRAWLING          → Internal link extraction
+PHASE 5   📁 SENSITIVE FILES   → Endpoint scanning
+PHASE 6   💉 VULNERABILITY SCAN → 11 scan types + fuzzing
+PHASE 7   🛡️ FP FILTER         → 5-stage pipeline
+PHASE 8   🔬 DEEP VERIFICATION → Secondary request check
+
+👤 IDENTITAS
+--------------
+- Hunter: Dikha Pormes
+- Email: 418teapotbot@gmail.com
+- Signal: BloodGhostZombie/Fusion-v3.0
+- Anonymous Mode: Random identity rotation
+
+📄 LISENSI
+--------------
+PROPRIETARY — ALL RIGHTS RESERVED
+Hanya untuk ethical use: riset keamanan, bug bounty, pendidikan.
+
+⭐ CREDITS
+--------------
+Dibuat oleh Dikha Pormes & 418teapot
+"Untuk orang yang kusayangi — selamanya dalam kode ini."
+```
 ```
 
-def generate_config():
-"""Generate default config.yaml."""
-config_content = '''# ═══════════════════════════════════════════════════════════════
-
-BLOOD GHOST BLUE — CONFIGURATION FILE
-
-═══════════════════════════════════════════════════════════════
-
-Generated by Blood Ghost Blue v4.0
-
-Edit sesuai kebutuhan, lalu jalankan:
-
-python3 blood.py --config config.yaml
-
-═══════════════════════════════════════════════════════════════
+================================================================================
+                          END OF README.md
+================================================================================
 ```
-hunter:
-name: "418teapot"
-email: "418teapotbot@gmail.com"
-signal: "BloodGhostBlue/4.0"
-
-targets: []
-
-- target1.com
-
-- target2.com
-
-output:
-directory: "./bounty_results"
-database: "bounty_hunter.db"
-log_level: "INFO"
-
-performance:
-workers: 5
-rate_limit: 2.0
-timeout: 15
-max_retries: 2
-max_urls: 1000
-max_depth: 3
-
-scope:
-include: []
-exclude: []
-strict: true
-
-recon:
-crtsh: true
-wayback: true
-otx: true
-urlscan: true
-dns_brute: true
-dns_brute_wordlist_size: 5000
-subdomain_permutation: true
-zone_transfer: true
-whois: true
-shodan: false
-censys: false
-
-scan:
-xss: true
-sqli: true
-lfi: true
-ssti: true
-ssrf: true
-idor: true
-cmdi: true
-open_redirect: true
-cors: true
-crlf: true
-host_header: true
-jwt: true
-graphql: true
-sensitive_files: true
-csrf: true
-subdomain_takeover: true
-cve: true
-
-payloads:
-xss_count: 50
-sqli_count: 30
-waf_bypass: true
-use_polyglots: true
-use_obfuscation: true
-double_encode: true
-
-ghost:
-quantum_noise: false
-dimensional_shift: false
-dna_cloning: true
-ghost_flood: false
-mirror_mode: true
-echo_locator: false
-interface: "eth0"
-target_network: ""
-
-false_positive:
-enabled: true
-aggression: 2
-verify_count: 2
-similarity_threshold: 0.85
-
-stealth:
-enabled: false
-random_delay: true
-random_user_agent: true
-spoof_referer: true
-use_tor: false
-
-reporting:
-json: true
-csv: true
-html: true
-markdown: true
-burp_xml: false
-webhook: ""
-
-api_keys:
-otx: ""
-urlscan: ""
-shodan: ""
-censys_id: ""
-censys_secret: ""
-github: ""
-
-notifications:
-discord_webhook: ""
-slack_webhook: ""
-telegram_bot_token: ""
-telegram_chat_id: ""
-email_smtp: ""
-email_port: 587
-email_user: ""
-email_pass: ""
-notify_on_critical: true
-notify_on_high: true
-'''
-
-if name == "main":
-import sys
-from pathlib import Path
-
-```
-
----
-
-## 🎯 **RINGKASAN PERINTAH**
-
-### **NO-ROOT (Bug Bounty Normal)**
-```bash
-python3 blood.py target.com
-python3 blood.py target.com --fp-mode aggressive --deep
-python3 blood.py target.com --scope "*.target.com" --threads 10
-python3 blood.py --config config.yaml
-```
-
-ROOT MODE (Full Power)
-
-```bash
-sudo python3 blood.py target.com --root-mode
-sudo python3 blood.py target.com --root-mode --ghost-all
-sudo python3 blood.py target.com --root-mode --target-network 192.168.1.0/24
-```
-
-STEALTH MODE (Evasion)
-
-```bash
-python3 blood.py target.com --stealth
-sudo python3 blood.py target.com --stealth --root-mode
-```
-
-CONFIG & SETUP
-
-```bash
-python3 blood.py --generate-config    # Buat config.yaml
-python3 blood.py --setup              # Install dependencies
-python3 blood.py --version            # Cek versi
-python3 blood.py --readme             # Tampilkan README
-python3 blood.py --quickstart         # Quick start guide
-```
-
----
-
-📂 FILE STRUCTURE
-
-```
-blood-ghost-blue/
-├── blood.py              # Main scanner script
-├── config.yaml           # Configuration file
-├── README.py             # README dalam Python (ini)
-├── requirements.txt      # Python dependencies
-├── bounty_results/       # Output folder
-│   ├── *.json
-│   ├── *.csv
-│   ├── *.md
-│   └── *.db
-└── logs/                 # Log files
-```
-
----
+"""
