@@ -1,6 +1,7 @@
-"""
+```
 🩸 BLOOD GHOST ZOMBIE — FINAL ULTIMATE FUSION EDITION v1.0
 "Untuk orang yang kusayangi — selamanya dalam kode ini."
+```
 ```
 ================================================================================
                                README.md
@@ -110,30 +111,30 @@ Dependencies (auto-install):
   git clone https://github.com/pormes-90/Blood.git
   cd Blood
   pip install -r requirements.txt  # opsional, script auto-install
-  python3 zombie.py <target>
+  python3 blood.py <target>
 ```
 ```
 🎮 PENGGUNAAN
 --------------
-  # Basic
-  python3 blood.py nasa.gov
+Basic
+  python3 zombie.py nasa.gov
 
   # Stealth Mode
-  python3 blood.py google.com --stealth --rate 3.5
+  python3 zombie.py google.com --stealth --rate 3.5
 
   # Deep Scan
-  python3 blood.py hackerone.com --deep --threads 8
+  python3 zombie.py hackerone.com --deep --threads 8
 
   # Custom Output
-  python3 blood.py bugcrowd.com --output ./reports
+  python3 zombie.py bugcrowd.com --output ./reports
 
   # Disable Modules
-  python3 blood.py example.com --no-dna --no-ghost --no-dork
+  python3 zombie.py example.com --no-dna --no-ghost --no-dork
 
   #Full Save
   python3 blood.py nasa.gov --fp-mode normal --rate 5.0 --deep --threads 2
 ```
-
+``
 OPTIONS:
   --stealth       Stealth mode (workers=2, rate=3.5)
   --deep          Deep scan mode (2x payloads, 2x workers)
@@ -304,4 +305,3 @@ Dibuat oleh Dikha Pormes & 418teapot
                           END OF README.md
 ================================================================================
 ```
-"""
