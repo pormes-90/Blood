@@ -134,7 +134,7 @@ Basic
   #Full Save
   python3 blood.py nasa.gov --fp-mode normal --rate 5.0 --deep --threads 2
 ```
-``
+```
 OPTIONS:
   --stealth       Stealth mode (workers=2, rate=3.5)
   --deep          Deep scan mode (2x payloads, 2x workers)
@@ -288,7 +288,7 @@ PHASE 8   🔬 DEEP VERIFICATION → Secondary request check
 - Signal: BloodGhostZombie/Fusion-v3.0
 - Anonymous Mode: Random identity rotation
 ```
-````
+```
 📄 LISENSI
 --------------
 PROPRIETARY — ALL RIGHTS RESERVED
